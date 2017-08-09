@@ -1,0 +1,1 @@
+[{"id":11,"class_name_2":"男装","class_number_1":6},{"id":12,"class_name_2":"女装","class_number_1":6},{"id":13,"class_name_2":"童装","class_number_1":6},{"id":21,"class_name_2":"内衣","class_number_1":6},{"id":22,"class_name_2":"配饰","class_number_1":6}]

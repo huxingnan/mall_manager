@@ -1,0 +1,1 @@
+[{"id":14,"class_name_2":"冰箱","class_number_1":7},{"id":15,"class_name_2":"洗衣机","class_number_1":7},{"id":23,"class_name_2":"电视","class_number_1":7},{"id":24,"class_name_2":"空调","class_number_1":7}]

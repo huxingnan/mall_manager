@@ -1,0 +1,1 @@
+[{"id":2,"brand_name":"lenovo"},{"id":8,"brand_name":"华为"},{"id":18,"brand_name":"华为"},{"id":22,"brand_name":"美的Midea"}]

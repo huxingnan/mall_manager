@@ -1,0 +1,1 @@
+[{"id":6,"class_name_1":"服装鞋帽"},{"id":7,"class_name_1":"家用电器"},{"id":8,"class_name_1":"电脑办公"},{"id":9,"class_name_1":"清洁用品"},{"id":10,"class_name_1":"母婴玩具"},{"id":11,"class_name_1":"手机数码"},{"id":12,"class_name_1":"图书音像"},{"id":13,"class_name_1":"鞋靴箱包"},{"id":14,"class_name_1":"户外钟表"},{"id":15,"class_name_1":"食品烟酒"}]

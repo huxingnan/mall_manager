@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper>
+	<cache-ref namespace="com.sunshine.mall.manager.mapper.ProductMapper" />
+	<insert id="insertProduct" useGeneratedKeys="true" keyProperty="id"
+		keyColumn="id">
+		insert into t_mall_product
+		values(null,#{product_name},#{product_image},
+		#{class_number_1},#{class_number_2},
+		#{brand_id},CURRENT_TIMESTAMP(),
+		#{product_description})
+	</insert>
+	
+	
+</mapper>

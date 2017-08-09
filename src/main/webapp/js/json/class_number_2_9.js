@@ -1,0 +1,1 @@
+[{"id":18,"class_name_2":"洗发","class_number_1":9},{"id":19,"class_name_2":"护肤","class_number_1":9},{"id":20,"class_name_2":"牙膏牙刷","class_number_1":9}]
