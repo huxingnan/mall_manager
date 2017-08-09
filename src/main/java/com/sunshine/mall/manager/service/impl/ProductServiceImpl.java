@@ -15,14 +15,13 @@ public class ProductServiceImpl implements ProductService {
 	private ProductMapper productMapper;
 	@Override
 	public void saveProduct(T_Product product) {
-		// TODO Auto-generated method stub
 		productMapper.insertProduct(product);
 	}
 
 	@Override
 	public void saveProductImageById(Integer product_id, List<String> filenamelist) {
 		// TODO Auto-generated method stub
-
+		productMapper.insertProductImageByProductId(product_id,filenamelist);
 	}
 
 }

@@ -29,10 +29,8 @@ public class SpuController {
 	
 	@RequestMapping("/main")
 	public String toMain() {
-		
 		return "/spu/spu_main";
 	}
-	
 	
 	@RequestMapping("/saveProductInfoAndImage")
 	public String saveProductInfoAndImage(T_Product product ,@RequestParam("files") MultipartFile[] files){
@@ -43,6 +41,7 @@ public class SpuController {
 		
 		Integer product_id = product.getId();
 		productService.saveProductImageById(product_id, filenamelist);
-		return null;
+		return "redirect:/spu/main.do";
 	}
+	
 }
