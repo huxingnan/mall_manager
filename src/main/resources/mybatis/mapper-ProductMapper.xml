@@ -11,10 +11,9 @@
 		#{brand_id},CURRENT_TIMESTAMP(),
 		#{product_description})
 	</insert>
-	
 	<insert id="insertProductImageByProductId">
 	   insert into t_mall_product_image values
-	   <foreach collection="filenamelist" item="image" close=",">
+	   <foreach collection="filenamelist" item="image" separator=",">
 	   (null,1,#{product_id},#{image})
 	   </foreach>
 	</insert>
