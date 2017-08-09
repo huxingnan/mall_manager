@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+<context:component-scan base-package="com.sunshine.mall" use-default-filters="true">
+   <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> 
+</context:component-scan>
+
+<context:property-placeholder location="classpath:/jdbc.properties"/> 
+
+<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
+<!--    <constructor-arg name="configName" value="cpes"/>  -->
+        <property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.password}"/>
+</bean>
+
+
+<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+  <property name="dataSource" ref="dataSource"></property>
+  <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
+  <property name="typeAliasesPackage" value="com.sunshine.atcrowdfunding"></property>
+    <property name="mapperLocations">  
+     <list > 
+      <value>classpath*:/mybatis/mapper-*.xml</value> 
+     </list> 
+   </property>  
+</bean>
+
+   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="mapperScannerConfigurer">   
+    <property name="basePackage" value="com.sunshine.mall.**.mapper"></property>  
+  </bean>  
+
+</beans>
