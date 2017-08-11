@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunshine.mall.manager.mapper.AttrMapper">
+	<insert id="insertAttr" parameterType="map" useGeneratedKeys="true" keyProperty="id"
+		keyColumn="id">
+		insert into t_mall_attr
+		(
+        attr_name,
+        class_number_2,
+        create_time
+		)
+		values(#{attr_name},#{class_number_2},current_timestamp())
+	</insert>
+	<insert id="insertAttrValue"  >
+	   insert into t_mall_attr_value (
+        attr_value,
+        attr_id,
+        attr_value_name,
+        create_time
+	   ) values
+	   <foreach collection="t_Attr_Value_list" item="attr" separator="," >
+	   (#{attr.attr_value},#{attr_id},#{attr.attr_value_name},current_timestamp())
+	   </foreach>
+	</insert>
+</mapper>

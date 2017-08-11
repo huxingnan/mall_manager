@@ -28,7 +28,8 @@ public class SpuController {
 	@RequestMapping("/saveProductInfoAndImage")
 	public String saveProductInfoAndImage(T_Product product ,@RequestParam("files") MultipartFile[] files){
 		List<String> filenamelist =MyUploadUtil.saveFile(files);
-		
+		String spu_main_Image = filenamelist.get(0);
+		product.setProduct_image(spu_main_Image);
 		productService.saveProduct(product,filenamelist);//主键返回 
 		
 		//Integer product_id = product.getId();//获取生成的产品id

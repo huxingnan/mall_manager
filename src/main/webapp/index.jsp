@@ -10,5 +10,7 @@
 <h2>sunshine index page!</h2>
 <hr/>
 <a href="${pageContext.request.contextPath}/spu/main.do" >管理spu商品信息</a>
+<a href="${pageContext.request.contextPath}/attr/attr_main.do" >商品属性信息管理</a>
+<a href="${pageContext.request.contextPath}/sku/sku_main.do" >SKU信息管理</a>
 </body>
 </html>

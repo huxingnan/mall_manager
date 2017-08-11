@@ -9,7 +9,6 @@ public class T_Attr_Value {
 	private String attr_value_name;
 	private String create_time;
 	
-	
 	@Override
 	public String toString() {
 		return "T_Attr_Value [Id=" + Id + ", attr_value=" + attr_value + ", enabled=" + enabled + ", attr_id=" + attr_id

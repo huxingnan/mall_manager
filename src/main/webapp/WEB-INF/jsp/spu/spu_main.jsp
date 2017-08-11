@@ -81,6 +81,7 @@
 	  getClassNumber2AndBrand(selectEle1.val());
   });
   
+  //一级分类下拉选择框 change 事件  根据 一级分类ID 获取 二级分类 以及 品牌
   function getClassNumber2AndBrand(class_number_1_id){
     var selectEle2	=  $("#spu_class_number_2");
     var spu_brand_class_select	=  $("#spu_brand_class");

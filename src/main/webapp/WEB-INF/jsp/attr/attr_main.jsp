@@ -47,8 +47,13 @@
   });
   
   function addAttrForProduct(){
-	  var option = $("#attr_class_number_2 :selected");
-	  
+	//  $("#attr_class_number_2 :selected") ||
+	  var option =  $("#attr_class_number_2 :selected");
+	  //console.log(option);
+	// var option = $(select_2 ).find("option").first();
+	   // select_2.
+	   
+	  console.log(option);
 	  $.post("${pageContext.request.contextPath}/attr/attr_add.do",{"class_number_2":option.val(),"class_name_2":option.text()}, function(data){
 		   $("#attr_list_area").html(data);
 	  });

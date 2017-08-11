@@ -9,7 +9,7 @@
 </head>
 <body>
 		<hr>
-	   <form action="add_attr.do" method="post">
+	   <form action="do_add_attr.do" method="post">
 		   ${class_number_2} ${class_name_2}<br>
 			<input type="hidden" name="class_name_2" value="${class_name_2}"/>
 			<input type="hidden" name="class_number_2"  value="${class_number_2}"/>
@@ -34,7 +34,6 @@
 		context+='<tr><td>属性名:<input type="text" /></td><td></td><td><a href="javascript:void(0);" onclick="attr_add_table_tr(this)">添加属性值</a></td></tr>';
 		context+='<tr><td>属性值:<input type="text" /></td><td>属性值名:<input type="text"/></td><td><a href="javascript:;" onclick="remove_tr(this)" >删除</a></td></tr>';
 	    context+='</table>';
-	    
 	    $("#add_attr_submit_button").prevAll("table").last().after(context);
    }
    
@@ -62,22 +61,19 @@
    }
    
    function attr_add_submit(ele){
-	   
 	  var attr_tables = $(ele).siblings("table");
 	  $(attr_tables).each(function(i,n){
 		var trs =$(n).find("tr");
 		$(trs).each(function(index,element){
 			var inputs = $(element).find("input");
-			if(index  == 0){
+			if(index == 0){
 				inputs.first().attr("name","object_T_Attr_List["+i+"].attr_name");
 			}else{
-				inputs.first().attr("name","object_T_Attr_List["+i+"].t_Attr_Value_list["+index+"].attr_value");
-				inputs.eq(1).attr("name","object_T_Attr_List["+i+"].t_Attr_Value_list["+index+"].attr_value_name");
+				inputs.first().attr("name","object_T_Attr_List["+i+"].t_Attr_Value_list["+(index-1)+"].attr_value");
+				inputs.eq(1).attr("name","object_T_Attr_List["+i+"].t_Attr_Value_list["+(index-1)+"].attr_value_name");
 			}
 		});
-		  
 	  });
-	   
 	  $(ele).parents("form").first().submit();
    }
   

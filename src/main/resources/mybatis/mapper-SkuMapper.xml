@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunshine.mall.manager.mapper.SkuMapper">
+
+    <resultMap type="com.sunshine.mall.manager.bean.Model_T_Attr" id="ModelAttrResultMap"  autoMapping="true">
+       <id property="id" column="id" />
+      <collection property="attrValueList" ofType="com.sunshine.mall.manager.bean.T_Attr_Value" autoMapping="true">
+        <id property="id" column="attr_value_id"  />
+      </collection>
+    </resultMap>
+    
+	<select id="selectAttrByClassNumber2"  resultMap="ModelAttrResultMap" resultType="com.sunshine.mall.manager.bean.Model_T_Attr" >
+          select a.id,a.attr_name ,v.id attr_value_id,v.attr_value,v.attr_value_name
+           from t_mall_attr a,t_mall_attr_value v 
+           where a.id=v.attr_id and a.class_number_2 = #{class_number_2}
+	</select>
+	
+	<select id="selectProductByClassNumber2AndBrandId" resultType="com.sunshine.mall.manager.bean.T_Product" >
+	   select 
+	   Id,
+       product_name
+       from t_mall_product where class_number_2 = #{class_number_2} and brand_id=${brand_id}
+	</select>
+	
+	<insert id="insertSku" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+	  insert into t_mall_sku (
+	     product_id,
+         product_amount,
+         price,
+         create_time,
+         sku_name
+	  ) values (
+	     #{product_id},
+	     #{product_amount},
+	     #{price},
+	     current_timestamp(),
+	     #{sku_name}
+	  )
+	</insert>
+</mapper>
