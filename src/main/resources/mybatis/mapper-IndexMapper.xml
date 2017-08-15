@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunshine.mall.manager.mapper.IndexMapper">
+	 <resultMap type="com.sunshine.mall.manager.bean.Model_Source" id="Model_Source"  autoMapping="true">
+        <id property="id" column="id" />
+      <collection property="childrenList" ofType="com.sunshine.mall.manager.bean.Object_Source" >
+        <id property="id" column="child_id"  />
+        <result property="index_name" column="child_index_name" />
+        <result property="url"  column="child_url" />
+      </collection>
+    </resultMap>
+	<select id="selectLeftFromUI_west" resultMap="Model_Source"  >
+	 select 
+	    p.id ,p.index_name,p.url,p.pid,
+	    c.id child_id,c.index_name child_index_name ,c.url child_url 
+	 from 
+	    t_ui_west p 
+	 LEFT JOIN 
+	    t_ui_west c 
+	 ON 
+	    p.id = c.pid 
+	</select>
+</mapper>
