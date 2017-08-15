@@ -1,34 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/image/small_image/zebre.png" type="image/x-icon" />
-<title >sunshine商城</title>
-</head>
-<body>
-<h2>商品属性管理</h2>
-<form method="post" id="attr_product_form"action="${pageContext.request.contextPath}/attr/saveProductInfoAndImage.do" enctype="multipart/form-data">
-  <hr>
-  <span>一级分类<span>
-   <select id="attr_class_number_1"  name="class_number_1" onchange="getClassNumber2(this.value)">
- 
-   </select>
-   <span>二级分类<span>
-  <select id="attr_class_number_2" name="class_number_2" onchange="addAttrForProduct()" >
-     <option >默认</option>
+<style type="text/css"  >
+			
+		#west_area div{
+		   cursor: pointer;
+		}	
+		#west_area div:hover{
+		   cursor: pointer;
+		   color: #f00;
+		}	
+		#west_area div:active{
+		   cursor: pointer;
+		   color: #0f0;
+		}	
+		
+  .big_input_contaner input{
+     margin: 5px;
+     width: 400px;
+  }
+  
+  .myui_easyui-layout_west{
+      width: 220px;
+      margin-top: 30px;
+      padding-left: 20px;
+  }
+  .myui_easyui_layout_center{
+     width: 220px;
+     margin-top: 30px;
+     padding-left: 40px;
+     padding-right: 40px
+  }
+  
+</style>
+<div class="easyui-layout" data-options="fit:true">
+<div  class="myui_easyui-layout_west"  data-options="region:'west',split:true,border:false" 
+     style=" width: 220px;
+      margin-top: 30px;
+      padding-left: 20px">
+      <span>一级分类<span><br/>
+     <select id="attr_class_number_1" class="easyui-combobox" style="width: 160px"  name="class_number_1" onchange="getClassNumber2(this.value)">
+       <option >请选择</option>
+     </select><br/>
+    <span>二级分类<span><br/>
+   <select id="attr_class_number_2"  class="easyui-combobox" style="width: 160px" name="class_number_2" onchange="addAttrForProduct()" >
+     <option >请选择</option>
   </select>
-
-  <br/>
-  <hr/>
-  <div id="attr_list_area">
+</div>
+<div class="myui_easyui-layout_center"    data-options="region:'center',border:false" style="width: 220px;margin-top: 30px;padding-left: 40px;padding-right: 40px;overflow: auto;"  >
+   <div id="attr_list_area" style="overflow: auto;height: 450px;">
 		
 
   </div>
- <hr/>
-</body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-3.2.0.js"></script>
+</div>
+</div>
+
+
+ 
+
+  
 <script type="text/javascript">
 
    var index =0;
@@ -37,46 +66,46 @@
 	   $("#attr_product_form").submit();
    }
    
-  var selectEle1 = $("#attr_class_number_1");
-  
-  $.getJSON("${pageContext.request.contextPath}/js/json/class_number_1.js",function(data){
+   $("#attr_class_number_1").combobox({
+	   url:"${pageContext.request.contextPath}/js/json/class_number_1.js",
+	   valueField:"id",    
+       textField:"class_name_1",
+	   value:"请选择",
+	   onSelect:attr_main_getClassNumber2
+	   
+   });
+   
+      function addAttrForProduct(){
+		  var option =  $("#attr_class_number_2").combobox("getValue");
+		  var text = $("#attr_class_number_2").combobox("getText");
+		  $.post("${pageContext.request.contextPath}/attr/attr_add.do",{"class_number_2":option,"class_name_2":text}, 
+				  function(data){
+			   $("#attr_list_area").html(data);
+		  });
+	  }
+   
+   
+	  function attr_main_getClassNumber2(){
+		 var class_number_1_id=$("#attr_class_number_1").combobox("getValue");
+	  $("#attr_class_number_2").combobox({
+		 url:" ${pageContext.request.contextPath}/js/json/class_number_2_"+class_number_1_id+".js",
+		 valueField:"id",    
+	     textField:"class_name_2",
+	     value:"请选择",
+	     onSelect:addAttrForProduct
+	  });
+	  }
+ // var selectEle1 = $("#attr_class_number_1");
+  /* 
+  $.getJSON("${pageContext.request.contextPath}/js/json/class_number_1.js",
+		  function(data){
 	  $.each(data,function(i,n){
 		  selectEle1.append('<option value="'+n.id+'">'+n.class_name_1+'</option>');
-	  })
+	  });
 	  getClassNumber2(selectEle1.val());
   });
+   */
   
-  function addAttrForProduct(){
-	//  $("#attr_class_number_2 :selected") ||
-	  var option =  $("#attr_class_number_2 :selected");
-	  //console.log(option);
-	// var option = $(select_2 ).find("option").first();
-	   // select_2.
-	   
-	  console.log(option);
-	  $.post("${pageContext.request.contextPath}/attr/attr_add.do",{"class_number_2":option.val(),"class_name_2":option.text()}, function(data){
-		   $("#attr_list_area").html(data);
-	  });
-  }
-  
-  
-  function getClassNumber2(class_number_1_id){
-    var selectEle2	=  $("#attr_class_number_2");
-    var attr_brand_class_select	=  $("#attr_brand_class");
-    selectEle2.empty();
-    attr_brand_class_select.empty();
-    $.getJSON("${pageContext.request.contextPath}/js/json/class_number_2_"+class_number_1_id+".js",function(data){
-  	  $.each(data,function(i,n){
-  		  //console.log(i);
-  		  if(i == 0){
-  			 selectEle2.append('<option selected="selected" value="'+n.id+'">'+n.class_name_2+'</option>');
-  		  }else{
-  			selectEle2.append('<option value="'+n.id+'">'+n.class_name_2+'</option>');
-  		  }
-  	  })
-    });
-    selectEle2.change();
-  }
   
   
 </script>

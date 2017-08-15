@@ -8,7 +8,7 @@ public class T_Attr {
 	private Integer class_number_2;
 	private String create_time;
 	
-	
+	//name = attr_name  value="3223" 
 	
 	@Override
 	public String toString() {

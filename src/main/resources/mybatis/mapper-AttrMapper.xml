@@ -3,6 +3,28 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sunshine.mall.manager.mapper.AttrMapper">
+	
+	<select id="select_attr_by_class_number2_and_attr_name"  resultMap="select_attr_by_class_number2_and_attr_name_resultMap">
+	SELECT
+		 a.Id attr_id ,a.attr_name ,av.Id attr_value_id ,av.attr_value,av.attr_value_name
+	FROM
+		t_mall_attr a,
+		t_mall_attr_value av
+	WHERE
+		a.Id=av.attr_id
+	AND
+		a.class_number_2=#{class_number_2}
+	AND
+		a.attr_name=#{attr_name}
+	</select>
+	
+	<resultMap type="com.sunshine.mall.manager.bean.Model_T_Attr" id="select_attr_by_class_number2_and_attr_name_resultMap" autoMapping="true" >
+	    <id column="attr_id" property="id" />
+	    <collection property="attrValueList" ofType="com.sunshine.mall.manager.bean.T_Attr_Value" autoMapping="true"  >
+	        <id column="attr_value_id" property="id" />
+	    </collection>
+	</resultMap>
+	
 	<insert id="insertAttr" parameterType="map" useGeneratedKeys="true" keyProperty="id"
 		keyColumn="id">
 		insert into t_mall_attr

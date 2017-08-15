@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sunshine.mall.manager.bean.Model_Attr_Value_List;
+import com.sunshine.mall.manager.bean.Model_T_Attr;
 import com.sunshine.mall.manager.bean.Object_T_Attr;
 import com.sunshine.mall.manager.mapper.AttrMapper;
 import com.sunshine.mall.manager.service.AttrService;
@@ -34,6 +35,12 @@ public class AttrServiceImpl implements AttrService {
 			System.out.println(size);
 			attrMapper.insertAttrValue( object_T_Attr.getT_Attr_Value_list(),attr_id);
 		}
+	}
+
+	@Override
+	public Model_T_Attr query_attr_by_class_number2_and_attr_name(Integer class_number_2, String attr_name) {
+		// TODO Auto-generated method stub
+		return attrMapper.select_attr_by_class_number2_and_attr_name(class_number_2,attr_name);
 	}
 
 }

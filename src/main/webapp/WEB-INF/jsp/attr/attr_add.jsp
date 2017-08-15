@@ -1,40 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/image/small_image/zebre.png" type="image/x-icon" />
-<title >sunshine商城</title>
-</head>
-<body>
-		<hr>
-	   <form action="do_add_attr.do" method="post">
+
+	   <form action="${pageContext.request.contextPath }/attr/do_add_attr.do" method="post" >
 		   ${class_number_2} ${class_name_2}<br>
 			<input type="hidden" name="class_name_2" value="${class_name_2}"/>
 			<input type="hidden" name="class_number_2"  value="${class_number_2}"/>
 			添加${class_name_2}分类属性<br>
 			<a href="javascript:attr_add_table();">添加属性</a>
-			<table border="1" style="margin-bottom: 20px">
-				<tr><td>属性名:<input type="text" /></td><td></td><td><a href="javascript:void(0);" onclick="attr_add_table_tr(this)">添加属性值</a></td></tr>
+			<table border="1" style="margin-bottom: 5px">
+				<tr><td>属性名:<input onchange="attr_is_exist(this)" type="text" /></td><td></td><td><a href="javascript:void(0);" onclick="attr_add_table_tr(this)">添加属性值</a></td></tr>
 				<tr><td>属性值:<input type="text"/></td><td>属性值名:<input type="text" /></td><td><a href="javascript:;" onclick="remove_tr(this)" >删除</a></td></tr>
 			</table>
-			<br/>
 			 <a href="javascript:;" onclick="delete_attr_table(this)">删除属性</a>
-			<br>
 			<input id="add_attr_submit_button" onclick="attr_add_submit(this)" type="button" value="发布分类属性"/>
 		</form>
-</body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-3.2.0.js"></script>
 <script type="text/javascript">
 
    function attr_add_table(){
 	   var context = "";
-	    context+='<table border="1"  style="margin-bottom: 20px" >';
-		context+='<tr><td>属性名:<input type="text" /></td><td></td><td><a href="javascript:void(0);" onclick="attr_add_table_tr(this)">添加属性值</a></td></tr>';
+	    context+='<table border="1"  style="margin-bottom: 5px" >';
+		context+='<tr><td>属性名:<input onchange="attr_is_exist(this)" type="text" /></td><td></td><td><a href="javascript:void(0);" onclick="attr_add_table_tr(this)">添加属性值</a></td></tr>';
 		context+='<tr><td>属性值:<input type="text" /></td><td>属性值名:<input type="text"/></td><td><a href="javascript:;" onclick="remove_tr(this)" >删除</a></td></tr>';
 	    context+='</table>';
-	    $("#add_attr_submit_button").prevAll("table").last().after(context);
+	    $("#add_attr_submit_button").prevAll("table").first().after(context);
+	    
+	    //$("#add_attr_submit_button").prevAll("table")
+   }
+   
+   function attr_is_exist(input){
+	    attr_name=$(input).val();
+	    class_number_2=$(input).parents("form").find("input").eq(1).val();
+	    
+	    $.getJSON("${pageContext.request.contextPath}/attr/query_attr_by_class_number2_and_attr_name.do",{"attr_name":attr_name,"class_number_2":class_number_2},
+	    	function(result){
+	    	   if(result.success){
+	    		   $(input).parents("td").first().nextAll("td").first().html("<span style='color:#2f0' >没有重复</span>");
+	    	   }else{
+	    		   $(input).parents("td").first().nextAll("td").first().html("<span style='color:#f00' >已经存在该属性</span>");
+	    	   }
+	        }	
+	    );
+	    
    }
    
    function attr_add_table_tr(ele){

@@ -7,6 +7,14 @@
 <title >Insert title here</title>
 </head>
 <body>
+
+<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'north',split:true,border:false" style="height:50px"></div>
+				<div data-options="region:'west',split:true,border:false" style="width:100px"></div>
+				<div data-options="region:'center',border:false"></div>
+			</div>
+
+
 <h2>SPU商品管理</h2>
 <form method="post" id="spu_product_form"action="${pageContext.request.contextPath}/spu/saveProductInfoAndImage.do" enctype="multipart/form-data">
   <hr>
@@ -36,7 +44,7 @@
 <button id="submit_Button" onclick="">提交</button>
 </form>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-3.2.0.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-3.2.0.js"></script> --%>
 <script type="text/javascript">
 
    var index =0;

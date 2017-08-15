@@ -19,4 +19,10 @@ public class ProductServiceImpl implements ProductService {
 		Integer product_id = product.getId();
 		productMapper.insertProductImageByProductId(product_id,filenamelist);
 	}
+
+	@Override
+	public List<T_Product> getSpuInfoAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

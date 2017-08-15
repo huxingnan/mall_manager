@@ -39,4 +39,17 @@
 	     #{sku_name}
 	  )
 	</insert>
+	
+	<insert id="insertSku_Attr_Value" >
+	   insert into t_mall_sku_attr_value (
+	            attr_name_id,
+				attr_value_id,
+				product_id,
+				create_time,
+				sku_id
+	   ) values 
+	   <foreach collection="sku_Attr_Value_list" separator="," item="item" >
+	        (#{item.attr_name_id},#{item.attr_value_id},#{product_id},current_timestamp(),#{sku_id})
+	   </foreach>
+	</insert>
 </mapper>

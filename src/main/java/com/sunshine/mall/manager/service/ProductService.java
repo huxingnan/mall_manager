@@ -13,5 +13,7 @@ public interface ProductService {
 	 */
 	void saveProduct(T_Product product, List<String> filenamelist);
 
+	List<T_Product> getSpuInfoAll();
+
 
 }
