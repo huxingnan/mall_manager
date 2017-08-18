@@ -19,7 +19,7 @@ public class MyStringUtil {
 		ModelAndView view = new ModelAndView(redirect);
 		view.addObject("path", path);
 		try {
-			URLEncoder.encode(title, "UTF-8");
+			title=URLEncoder.encode(title, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

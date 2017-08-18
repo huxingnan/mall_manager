@@ -1,12 +1,25 @@
 package com.sunshine.mall.manager.bean;
 
-public class T_Attr_Value {
 
+
+public class T_Attr_Value {
+	/**
+	 * 
+	 */
 	private Integer Id;
+	/**
+	 * 
+	 */
 	private String attr_value;
+	/**
+	 * 
+	 */
 	private String enabled;
+	
 	private Integer attr_id;
+	
 	private String attr_value_name;
+	
 	private String create_time;
 	
 	@Override
@@ -50,5 +63,4 @@ public class T_Attr_Value {
 	public void setCreate_time(String create_time) {
 		this.create_time = create_time;
 	}
-	
 }

@@ -90,7 +90,7 @@
    
    
    function review_path (url,title){
-	   
+	   title=decodeURI(title);
     $.post(url,function(data){
 		  // var  title=$(ele).html();
 		   $("#mall_manager_index_center").tabs("add",{

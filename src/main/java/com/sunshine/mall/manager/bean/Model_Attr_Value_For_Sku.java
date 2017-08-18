@@ -16,5 +16,4 @@ public void setAttr_value_id(Integer attr_value_id) {
 	this.attr_value_id = attr_value_id;
 }
    
-   
 }

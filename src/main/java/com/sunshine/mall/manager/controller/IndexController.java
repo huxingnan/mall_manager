@@ -26,20 +26,10 @@ public class IndexController {
 	 public String toIndex(ModelMap map,HttpServletRequest request) {
 		String path = request.getParameter("path");
 		String title = request.getParameter("title");
-		
-			if(title != null) {
-				try {
-				title=URLDecoder.decode(title, "UTF-8");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-			}
-		
 		map.put("path", path);
 		map.put("title", title);
 		if("".equals(path) || path == null) {
 			map.put("path", "0");
-			
 		}
 		 return "main";
 	 }
