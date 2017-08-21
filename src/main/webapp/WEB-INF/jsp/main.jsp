@@ -14,7 +14,6 @@
 			
 		#west_area div{
 		   cursor: pointer;
-		   
 		}	
 		#west_area div:hover{
 		   cursor: pointer;
@@ -108,7 +107,6 @@
 	   }
       var content = "1212";
       $.post($(ele).attr("url"),function(data){
-		   
 		   var  title=$(ele).html();
 		   $("#mall_manager_index_center").tabs("add",{
 			   title:title,
@@ -116,20 +114,6 @@
 			   closable:true
 		   });
 	   });
-	   
-	  /*  if($("#mall_manager_index_center").tabs("exists",$(ele).html()){
-		   
-		   
-		   $("#mall_manager_index_center").tabs("select",$(ele).html());
-		   return;
-	   }
-	   var content = open_on_tabs(ele);
-	   var  title=$(ele).html();
-	   $("#mall_manager_index_center").tabs("add",{
-		   titel:title,
-		   content:content,
-		   closable:true
-	   }); */
    }
 </script>
 </html>
